@@ -1,1 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Paleta de colores Vueling */
+:root {
+  --vueling-yellow: #ffcc00;
+  --vueling-dark-yellow: #e6b800;
+  --vueling-gray: #6b7280;
+  --vueling-light-gray: #f3f4f6;
+  --vueling-dark-gray: #374151;
+  --vueling-white: #ffffff;
+  --vueling-black: #1f2937;
+  --vueling-success: #10b981;
+  --vueling-error: #ef4444;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background-color: var(--vueling-light-gray);
+  color: var(--vueling-black);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+
+  &.btn-primary {
+    background-color: var(--vueling-yellow);
+    color: var(--vueling-black);
+
+    &:hover {
+      background-color: var(--vueling-dark-yellow);
+    }
+  }
+
+  &.btn-secondary {
+    background-color: var(--vueling-gray);
+    color: var(--vueling-white);
+
+    &:hover {
+      background-color: var(--vueling-dark-gray);
+    }
+  }
+
+  &.btn-danger {
+    background-color: var(--vueling-error);
+    color: var(--vueling-white);
+
+    &:hover {
+      background-color: #dc2626;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--vueling-gray);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--vueling-yellow);
+  }
+}
+
+.card {
+  background: var(--vueling-white);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+  color: var(--vueling-error);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.success {
+  color: var(--vueling-success);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}

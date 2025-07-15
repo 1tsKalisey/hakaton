@@ -1,0 +1,78 @@
+<div class="home-container">
+  <div class="search-section">
+    <div class="card">
+      <h2>Buscar Clima</h2>
+      <p>Ingresa el nombre de la ciudad para ver el clima actual</p>
+
+      <form (ngSubmit)="onSubmit()" class="search-form">
+        <div class="form-group">
+          <input
+            [formControl]="cityControl"
+            type="text"
+            class="form-control"
+            placeholder="Nombre de la ciudad..."
+            [class.error]="cityControl.invalid && cityControl.touched"
+          />
+          @if (cityControl.invalid && cityControl.touched) {
+            <div class="error">El nombre de la ciudad es requerido</div>
+          }
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="isLoading() || cityControl.invalid"
+        >
+          @if (isLoading()) {
+            Buscando...
+          } @else {
+            Buscar
+          }
+        </button>
+      </form>
+
+      @if (error()) {
+        <div class="error-message">
+          <p>{{ error() }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (currentWeather()) {
+    <div class="weather-result">
+      <div class="card weather-card">
+        <div class="weather-header">
+          <h3>{{ currentWeather()!.name }}, {{ currentWeather()!.sys.country }}</h3>
+          <button
+            class="btn btn-secondary favorite-btn"
+            (click)="addToFavorites()"
+            [disabled]="isFavorite()"
+          >
+            @if (isFavorite()) { ⭐ Agregado a favoritos } @else { ☆ Agregar a favoritos }
+          </button>
+        </div>
+
+        <div class="weather-info">
+          <div class="temperature">
+            <span class="temp-value">{{ currentWeather()!.main.temp | number:'1.0-0' }}°C</span>
+            <span class="feels-like">Sensación térmica {{ currentWeather()!.main.feels_like | number:'1.0-0' }}°C</span>
+          </div>
+
+          <div class="weather-details">
+            <div class="weather-description">
+              <img
+                [src]="'https://openweathermap.org/img/w/' + currentWeather()!.weather[0].icon + '.png'"
+                [alt]="currentWeather()!.weather[0].description"
+              />
+              <span>{{ currentWeather()!.weather[0].description }}</span>
+            </div>
+            <div class="humidity">
+              Humedad: {{ currentWeather()!.main.humidity }}%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
